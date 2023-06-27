@@ -2,7 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Typography,
+  Grid,
+} from '@mui/material'
 import Actions from 'components/Actions/Actions'
 import { useGetForecastQuery } from 'redux/store/actions'
 import { RootState } from 'redux/store/reducers'
@@ -17,7 +27,7 @@ function ToDoList(): JSX.Element {
   const columns = [
     {
       value: '',
-      label: 'Date',
+      label: 'Date & Time',
       minWidth: 170,
       // eslint-disable-next-line react/no-unstable-nested-components
       format: (value: any, row: any) => {
@@ -26,11 +36,29 @@ function ToDoList(): JSX.Element {
     },
     {
       value: '',
-      label: 'Temp',
-      minWidth: 170,
+      label: 'Min Temp',
+      minWidth: 100,
       // eslint-disable-next-line react/no-unstable-nested-components
       format: (value: any, row: any) => {
-        return <div>{Math.round(row.main.temp - 273.15)}</div>
+        return <div>{Math.round(row.main.temp_min - 273.15)}°C</div>
+      },
+    },
+    {
+      value: '',
+      label: 'Max Temp',
+      minWidth: 100,
+      // eslint-disable-next-line react/no-unstable-nested-components
+      format: (value: any, row: any) => {
+        return <div>{Math.round(row.main.temp_max - 273.15)}°C</div>
+      },
+    },
+    {
+      value: '',
+      label: 'Temp',
+      minWidth: 100,
+      // eslint-disable-next-line react/no-unstable-nested-components
+      format: (value: any, row: any) => {
+        return <div>{Math.round(row.main.temp - 273.15)}°C</div>
       },
     },
   ]
@@ -42,7 +70,6 @@ function ToDoList(): JSX.Element {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
           })
-          console.log(position, 'position')
         },
         error => {
           setCoords(null)
@@ -57,53 +84,53 @@ function ToDoList(): JSX.Element {
     getUserLocation()
   }, [])
   console.log(data, 'data , useGetWeatherQuery')
-  return (
-    <div>
-      <Link to="/forecast">
-        <p>the weather</p>
-        {/* <p>{data?.main.temp && Math.round(data.main.temp - 273.15)}</p> */}
-      </Link>
 
-      <div>
-        <Link to="/add">{t('Add Item')}</Link>
-      </div>
-      <TableContainer component={Paper} sx={{ marginTop: 2 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column: any, i: number) => (
-                <TableCell
-                  key={`${column.value}+${i + 1}TableCell`}
-                  align="left"
-                  sx={{ minWidth: column.minWidth }}>
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data &&
-              data?.list &&
-              data?.list.map((row: any, i: number) => (
-                <TableRow
-                  key={`${row.createdAt}+${i + 1}TableRow`}
-                  role="checkbox"
-                  tabIndex={-1}
-                  sx={{ '&:hover': { backgroundColor: '#f3f3f3' } }}>
-                  {columns.map((column: any, index: number) => (
-                    <TableCell
-                      key={`${row.createdAt}-${column.value}-${i + 1}-${index + 1} TableCell`}
-                      align="left"
-                      sx={{ maxWidth: column.minWidth }}>
-                      {column.format ? column.format(row[column.value], row) : row[column.value]}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+  return (
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <Typography variant="h4" component="h2">
+          Weather
+        </Typography>
+      </Grid>
+      <Grid item xs={12}>
+        <TableContainer component={Paper} elevation={2} sx={{ boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)' }}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {columns.map((column: any, i: number) => (
+                  <TableCell
+                    key={`${column.value}+${i + 1}TableCell`}
+                    align="left"
+                    sx={{ minWidth: column.minWidth }}>
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data &&
+                data?.list &&
+                data?.list.map((row: any, i: number) => (
+                  <TableRow
+                    key={`${row.createdAt}+${i + 1}TableRow`}
+                    role="checkbox"
+                    tabIndex={-1}
+                    sx={{ '&:hover': { backgroundColor: '#f3f3f3' } }}>
+                    {columns.map((column: any, index: number) => (
+                      <TableCell
+                        key={`${row.createdAt}-${column.value}-${i + 1}-${index + 1} TableCell`}
+                        align="left"
+                        sx={{ maxWidth: column.minWidth }}>
+                        {column.format ? column.format(row[column.value], row) : row[column.value]}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+    </Grid>
   )
 }
 

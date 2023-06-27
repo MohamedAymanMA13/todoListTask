@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Modal, Box, Button } from '@mui/material'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { styled } from '@mui/system'
+import { styled } from '@mui/material/styles'
 
 import view from 'assets/images/view.svg'
 import deleteIcon from 'assets/images/delete.svg'
@@ -38,6 +38,22 @@ const ResponsiveButton = styled(Button)(({ theme }) => ({
   },
 }))
 
+const ActionsContainer = styled('div')`
+  display: flex;
+  align-items: center;
+  line-height: 0.2;
+  gap: 8px;
+`
+
+const EditLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`
+
 export default function Actions(props: IProps): JSX.Element {
   const { t } = useTranslation()
 
@@ -49,7 +65,7 @@ export default function Actions(props: IProps): JSX.Element {
       ?.handleArchive?.()
       .unwrap()
       .then(() => {
-        toast.success('Item Archive', {
+        toast.success('Item Archived', {
           position: toast.POSITION.TOP_RIGHT,
         })
         setOpenArchive(false)
@@ -69,7 +85,7 @@ export default function Actions(props: IProps): JSX.Element {
   }
 
   return (
-    <div>
+    <ActionsContainer>
       {props.archive && (
         <div>
           <ResponsiveButton type="button" onClick={() => setOpenArchive(true)}>
@@ -84,8 +100,8 @@ export default function Actions(props: IProps): JSX.Element {
               <div>
                 <p>{t('Archive Item')}</p>
               </div>
-              <div className="">
-                <p>{t('Are you sure to archive item?')}</p>
+              <div>
+                <p>{t('Are you sure you want to archive this item?')}</p>
               </div>
               <div>
                 <div>
@@ -101,13 +117,13 @@ export default function Actions(props: IProps): JSX.Element {
           </Modal>
         </div>
       )}
-
       {props.editLink && (
-        <Link to={`${props.editLink}`} className="">
-          <img src={edit} alt="history" className="editIcon" />
-        </Link>
+        <div>
+          <EditLink to={`${props.editLink}`}>
+            <img src={edit} alt="history" />
+          </EditLink>
+        </div>
       )}
-
       {props.delete && (
         <div>
           <ResponsiveButton type="button" onClick={() => setOpen(true)}>
@@ -122,8 +138,8 @@ export default function Actions(props: IProps): JSX.Element {
               <div>
                 <p>{t('Delete Item')}</p>
               </div>
-              <div className="">
-                <p>{t('Are you sure to delete item?')}</p>
+              <div>
+                <p>{t('Are you sure you want to delete this item?')}</p>
               </div>
               <div>
                 <div>
@@ -139,6 +155,6 @@ export default function Actions(props: IProps): JSX.Element {
           </Modal>
         </div>
       )}
-    </div>
+    </ActionsContainer>
   )
 }

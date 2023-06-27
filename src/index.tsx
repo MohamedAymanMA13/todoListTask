@@ -3,29 +3,17 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from 'redux/store/index'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
-const Theme = createTheme({
-  palette: {
-    primary: {
-      main: '#007aff',
-    },
-    secondary: {
-      main: '#fff',
-    },
-  },
-})
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ThemeProvider theme={Theme}>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </ThemeProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>,
 )

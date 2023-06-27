@@ -2,11 +2,23 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Button,
+  Typography,
+  Grid,
+} from '@mui/material'
 import Actions from 'components/Actions/Actions'
 import { deleteToDoList, archiveToDoList, useGetWeatherQuery } from 'redux/store/actions'
 import { RootState } from 'redux/store/reducers'
 import { skipToken } from '@reduxjs/toolkit/dist/query'
+import { styled } from '@mui/system'
 
 function ToDoList(): JSX.Element {
   const { t } = useTranslation()
@@ -45,6 +57,7 @@ function ToDoList(): JSX.Element {
       },
     },
   ]
+
   const getUserLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -53,7 +66,6 @@ function ToDoList(): JSX.Element {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
           })
-          console.log(position, 'position')
         },
         error => {
           setCoords(null)
@@ -64,20 +76,27 @@ function ToDoList(): JSX.Element {
       console.log('Geolocation is not supported by this browser.')
     }
   }
+
   useEffect(() => {
     getUserLocation()
   }, [])
-  console.log(data, 'data , useGetWeatherQuery')
+
+  const WeatherLink = styled(Link)`
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 16px;
+  `
+
   return (
     <div>
-      <Link to="/forecast">
-        <p>the weather</p>
-        <p>{data?.main.temp && Math.round(data.main.temp - 273.15)}</p>
+      <Link to="/add">
+        <Button variant="contained">{t('Add Item')}</Button>
       </Link>
-
-      <div>
-        <Link to="/add">{t('Add Item')}</Link>
-      </div>
+      <Grid container spacing={2} justifyContent="center">
+        <WeatherLink to="/forecast">
+          The Weather Now is {data?.main.temp && Math.round(data.main.temp - 273.15)}°C
+        </WeatherLink>
+      </Grid>
       <TableContainer component={Paper} sx={{ marginTop: 2 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -92,6 +111,7 @@ function ToDoList(): JSX.Element {
               ))}
             </TableRow>
           </TableHead>
+
           <TableBody>
             {toDoList &&
               toDoList.map((row: any, i: number) => (

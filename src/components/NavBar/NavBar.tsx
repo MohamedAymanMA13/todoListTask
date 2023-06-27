@@ -1,15 +1,31 @@
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { CssBaseline, Switch } from '@mui/material'
 import './NavBar.scss'
-import { useDispatch } from 'react-redux'
 
-export default function NavBar(): JSX.Element {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+export default function NavBar({
+  darkMode,
+  setDarkMode,
+}: {
+  darkMode: boolean
+  setDarkMode: (x: boolean) => void
+}): JSX.Element {
+  const { t } = useTranslation()
+
+  const handleThemeChange = () => {
+    setDarkMode(!darkMode)
+  }
 
   return (
-    <div className="">
-      <div className="">Hello</div>
+    <div>
+      <CssBaseline />
+      <div className="navbar">
+        <div className="navbar__mode">
+          {t('mode')}
+          <Switch checked={darkMode} onChange={handleThemeChange} />
+        </div>
+      </div>
     </div>
   )
 }

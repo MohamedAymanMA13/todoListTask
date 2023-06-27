@@ -30,7 +30,6 @@ export const ToDoListSlice = createSlice({
   initialState,
   reducers: {
     addToDoList: (state, action: PayloadAction<ItoDo>) => {
-      console.log(action.payload, 'action.payload')
       state.list = [...state.list, action.payload]
     },
     deleteToDoList: (state, action: PayloadAction<ItoDo>) => {

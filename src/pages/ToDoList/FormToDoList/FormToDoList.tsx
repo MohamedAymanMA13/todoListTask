@@ -37,10 +37,6 @@ export default function FormToDoList(props: any): JSX.Element {
   })
   useEffect(() => {
     if (id) {
-      console.log(
-        toDoList.filter((x: any) => x.createdAt === id),
-        'ssss',
-      )
       setFormValues(toDoList.filter((x: any) => x.createdAt === id)[0])
     }
   }, [id, toDoList])
