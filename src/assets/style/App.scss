@@ -1,0 +1,73 @@
+// @font-face {
+//   font-family: 'Poppins';
+//   src: url('../fonts/Poppins-Medium.ttf');
+//   font-weight: 500;
+//   font-style: normal;
+// }
+// @font-face {
+//   font-family: 'Poppins';
+//   src: url('../fonts/Poppins-SemiBold.ttf');
+//   font-weight: 700;
+//   font-style: bold;
+// }
+@media print {
+  @page {
+    margin: 0;
+  }
+  body {
+    margin: 1.6cm;
+  }
+}
+@font-face {
+  font-family: 'Tajawal';
+  src: url('../fonts/Tajawal-Medium.ttf');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Tajawal';
+  src: url('../fonts/Tajawal-Bold.ttf');
+  font-weight: 500;
+  font-style: bold;
+}
+:root {
+  --toastify-color-success: #2f8165 !important;
+}
+html,
+body {
+  scroll-behavior: smooth;
+  // font-family: 'Tajawal', 'sans-serif' !important;
+}
+
+//
+.App[dir='rtl'],
+.chakra-modal__content div[dir='rtl'] {
+  font-family: 'Tajawal', 'sans-serif' !important;
+}
+// .App[dir='ltr'],
+// .chakra-modal__content div[dir='ltr'] {
+//   font-family: 'Poppins', 'GE SS Unique Light' !important;
+// }
+
+* ::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+
+/* Track */
+* ::-webkit-scrollbar-track {
+  margin: 10px;
+  box-shadow: inset 0 0 5px #ccc;
+  border-radius: 10px;
+}
+
+/* Handle */
+* ::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+* ::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}

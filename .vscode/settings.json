@@ -1,0 +1,77 @@
+{
+   "[javascriptreact]": {​​​​​
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        }​​​​​,
+    "editor.formatOnSave": true,
+    "[javascript]": {​​​​​
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }​​​​​,
+    "editor.codeActionsOnSave": {​​​​​
+        "source.fixAll": true
+    }​​​​​,
+    "eslint.alwaysShowStatus": true,
+    "prettier.disableLanguages": [
+        "js","ts"
+    ],
+    // "files.autoSave": "onFocusChange",
+    "[scss]": {​​​​​
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }​​​​​,
+    "editor.tabSize": 2,
+    "[json]": {​​​​​
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"i18next.i18nPaths": "s:/work/next-starter-code/locales",
+"cSpell.words": [
+  "testid"
+],
+"better-comments.multilineComments": true,
+"better-comments.tags": [
+  {
+    "tag": "!",
+    "color": "#FF2D00",
+    "strikethrough": false,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
+  },
+  {
+    "tag": "?",
+    "color": "#3498DB",
+    "strikethrough": false,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
+  },
+  {
+    "tag": "//",
+    "color": "#474747",
+    "strikethrough": true,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
+  },
+  {
+    "tag": "todo",
+    "color": "#FF8C00",
+    "strikethrough": false,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
+  },
+  {
+    "tag": "*",
+    "color": "#98C379",
+    "strikethrough": false,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
+  }
+]
+}

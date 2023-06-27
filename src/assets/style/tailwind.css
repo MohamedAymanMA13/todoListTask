@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    --color-primary:#001E4C;
+    --color-secondary:#E3C600;
+  }
+}
+@layer components {
+  .text-xs{
+    line-height:unset !important;
+  }
+  .btn-primary {
+    @apply bg-primary-500 text-white border border-white text-xs py-[7px] px-4 rounded-md disabled:opacity-50;
+  }
+  /* .btn-outline-primary {
+    @apply bg-white hover:text-white hover:bg-primary-500 text-primary-500  text-xs  py-1 px-6 rounded mx-2 border border-primary-500;
+  } */
+  .btn-white-outline {
+    @apply bg-white shadow text-primary-500   rounded-md text-xs py-[7px] px-4 disabled:opacity-50;
+  }
+  .btn-add-outline {
+    @apply bg-white shadow text-primary-500 border-2 border-primary-500 capitalize font-bold  min-w-[200px] flex justify-center rounded-md text-xs  flex items-center py-2 px-4 disabled:opacity-50;
+  }
+  .nav-link {
+    @apply flex items-center px-2 py-1 text-sm  text-black hover:text-primary-500 hover:no-underline;
+  }
+  .active-link {
+    @apply text-primary-500 border-primary-500 border-b-2;
+  }
+  .white-container {
+    @apply bg-white p-3  rounded ;
+  }
+  .me-2 {
+    @apply rtl:ml-2 ltr:mr-2;
+  }
+  .ms-2 {
+    @apply rtl:mr-2 ltr:ml-2;
+  }
+  .me-3 {
+    @apply rtl:ml-3 ltr:mr-3;
+  }
+  .ms-3 {
+    @apply rtl:mr-3 ltr:ml-3;
+  }
+  .pe-2 {
+    @apply rtl:pl-2 ltr:pr-2;
+  }
+  .pe-4 {
+    @apply rtl:pl-4 ltr:pr-4;
+  }
+  .text-start {
+    @apply rtl:text-right  ltr:text-left;
+  }
+  .text-end {
+    @apply rtl:text-left ltr:text-right;
+  }
+}
+
